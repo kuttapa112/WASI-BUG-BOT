@@ -1,5 +1,7 @@
 FROM node:lts-bookworm
 
+WORKDIR /app
+
 RUN apt-get update && \
   apt-get install -y \
   ffmpeg \
@@ -8,7 +10,7 @@ RUN apt-get update && \
   apt-get upgrade -y && \
   rm -rf /var/lib/apt/lists/*
 
-COPY package.json .
+COPY package*.json ./
 
 RUN npm install --legacy-peer-deps && npm install qrcode-terminal --legacy-peer-deps
 
